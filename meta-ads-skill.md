@@ -188,22 +188,44 @@ When briefing new creative, use this format:
 - **Klaviyo:** email marketing platform. Purchaser exclusion lists are synced from Klaviyo to Meta (Klaviyo All Purchasers 180 days).
 - **Shopify:** ecommerce platform. Connected via Claude MCP for product, order, and analytics queries.
 - **Creative Library (Google Drive):** [Creative Library](https://drive.google.com/drive/folders/1ylYvtuf7byMF8eSkj-XSIdQRerFOzqIh?usp=sharing)
+- **META ADS TRACKER (Google Sheet):** The live ops tracker for all creative tracking and performance logging. Sheet ID: `1NoUImjhMNCHY8mrLLSQ8uCS6e871ZJlnkfIPoLWPmzA`. Access via Google Drive MCP using this ID. All reads and writes to tracker tabs go through this sheet.
 
 ---
 
 ## Tracking System
 
-The ad tracker spreadsheet has these tabs:
+The META ADS TRACKER Google Sheet is the live ops record for all creative. Sheet ID: `1NoUImjhMNCHY8mrLLSQ8uCS6e871ZJlnkfIPoLWPmzA`
+
+When Sarah or JJ makes a change in Meta Ads Manager, they log it in the **Change Log** tab. Claude reads the entry, updates the correct tab (Creative Lifecycle, Retest Queue, or Creative Pipeline), and confirms what was written. This keeps the sheet current at the point of action rather than in a weekly catch-up.
+
+### Tabs
 
 | Tab | Purpose | When to Update |
 |---|---|---|
 | **Benchmarks** | Reference card for all performance thresholds | Read-only. Check before making decisions. |
-| **Weekly Performance** | Numbers snapshot from Ads Manager | Every Monday. One row per campaign + audience segment breakdown. |
-| **Ad Creative Log** | Master list of every creative that exists | When launching, pausing, or retiring any ad. |
-| **Creative Lifecycle** | Full history of every creative's journey | Every time a creative moves, gets paused, rested, retested, or modified. One row per event. |
-| **Retest Queue** | Second chances for unlucky creative | When pausing something that failed for reasons other than poor performance. |
-| **Creative Pipeline** | What's in production | When briefing or tracking new creative production. |
-| **Monthly Summary** | Rolled-up monthly view | End of each month. |
+| **Creative Lifecycle** | Full history of every creative's journey - every launch, pause, kill, relaunch, modification | Every time a creative moves, gets paused, rested, retested, or modified. One row per event. |
+| **Retest Queue** | Second chances for unlucky creative | When pausing something that failed for reasons other than poor performance (outcompeted, low delivery, seasonal, under-impressed). |
+| **Creative Pipeline** | What's in production or ready to launch | When briefing or tracking new creative. Includes status, format, product, hook, asset link, headlines, captions. |
+| **Change Log** | Intake tab. Sarah or JJ logs any Meta change here. Claude processes into the right tab. | Every time a change is made in Ads Manager. |
+
+### How to Log a Change (Change Log Tab)
+
+Each row in the Change Log should include:
+
+| Column | What to enter |
+|---|---|
+| Date | DD.MM.YY |
+| Account | Eltee / J&J / Both |
+| Creative ID | EL-001, JJ-003, etc. |
+| Ad Name | Full ad name from Ads Manager |
+| Event Type | Launched / Paused (fatigue) / Paused (underperform) / Killed / Relaunched / Moved / Rested / Modified |
+| Change Made | Brief plain-English description of what happened |
+| ROAS at move | 7-day ROAS at time of change (leave blank if launching) |
+| Spend at move | Total spend at time of change |
+| By | JJ / Sarah |
+| Notes | Anything else relevant |
+
+Once logged, tell Claude: "Update the tracker from the Change Log." Claude will read the entry and write it to the correct tab.
 
 ### Creative ID Convention
 
